@@ -1,30 +1,6 @@
 import test from 'tape';
 import * as actions from '../../../src/js/actions/signup';
 
-test('updateTextInput creates the correct action', (t) => {
-  t.plan(1);
-
-  const expected = {
-    type: actions.UPDATE_TEXT_INPUT,
-    data: 'michael@jackson.com',
-    inputType: 'email'
-  };
-  const actual = actions.updateTextInput('michael@jackson.com', 'email');
-  t.deepEqual(actual, expected);
-});
-
-test('updatePassword creates the correct action', (t) => {
-  t.plan(1);
-
-  const expected = {
-    type: actions.UPDATE_TEXT_INPUT,
-    data: 'testpassword',
-    inputType: 'password'
-  };
-  const actual = actions.updateTextInput('testpassword', 'password');
-  t.deepEqual(actual, expected);
-});
-
 test.skip('signupUser async action creator returns expected action', (t) => {
   t.plan(1);
 

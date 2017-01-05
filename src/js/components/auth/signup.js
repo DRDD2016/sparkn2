@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 import { FormTextInput, FormPasswordInput } from './form-components';
+import { signupValidator as validate } from './form-validation';
 import styles from '../../../styles';
 
 
@@ -42,4 +43,4 @@ function Signup ({ handleSubmit, handleSubmitForm }) {
   );
 }
 
-export default reduxForm({ form: 'signup' })(Signup);
+export default reduxForm({ form: 'signup', validate })(Signup);

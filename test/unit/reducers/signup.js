@@ -8,8 +8,6 @@ test('SIGNUP_USER_REQUEST works', (t) => {
     type: 'SIGNUP_USER_REQUEST'
   };
   const expected = {
-    email: '',
-    password: '',
     isSigningUp: true,
     error: undefined
   };
@@ -28,8 +26,6 @@ test('SIGNUP_USER_SUCCESS works', (t) => {
     data
   };
   const expected = {
-    email: '',
-    password: '',
     isSigningUp: false,
     error: undefined
   };
@@ -47,8 +43,6 @@ test('SIGNUP_USER_FAILURE works', (t) => {
     error
   };
   const expected = {
-    email: '',
-    password: '',
     isSigningUp: false,
     error
   };

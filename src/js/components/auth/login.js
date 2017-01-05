@@ -3,15 +3,10 @@ import { Text, TouchableHighlight, View } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 import { FormTextInput, FormPasswordInput } from './form-components';
 import { loginValidator as validate } from './form-validation';
-import Router from '../../router';
 import styles from '../../../styles';
 
 
-function Login ({ navigator, handleSubmit, handleSubmitForm }) {
-
-  const goToNavbar = () => {
-    navigator.push(Router.getRoute('navbar'));
-  };
+function Login ({ handleSubmit, handleSubmitForm }) {
 
   return (
     <View style={{ marginTop: 50 }}>
