@@ -1,46 +1,35 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
-import Button from '../common/Button';
+import { Text, View, TouchableHighlight } from 'react-native';
+import { Field, reduxForm } from 'redux-form';
+import { FormTextInput, FormPasswordInput } from './form-components';
 import styles from '../../../styles';
 
 
-export default function Signup () {
+function Signup ({ handleSubmit, handleSubmitForm }) {
+
   return (
     <View style={{ marginTop: 50 }}>
       <Text style={{ paddingLeft: 5 }}>Email</Text>
       <View style={ styles.row }>
-        <TextInput
-          style={ styles.inputStyle }
-          onChangeText={ text => console.log(text) }
-          value={ 'text' }
-          type="text"
-        />
+        <Field name="email" component={ FormTextInput } />
       </View>
 
       <Text style={{ paddingLeft: 5 }}>Password</Text>
       <View style={ styles.row }>
-        <TextInput
-          style={ styles.inputStyle }
-          onChangeText={ text => console.log(text) }
-          value={ 'text' }
-          type="password"
-          secureTextEntry
-        />
+        <Field name="password" component={ FormPasswordInput } />
       </View>
       <Text style={{ paddingLeft: 5 }}>Confirm password</Text>
       <View style={ styles.row }>
-        <TextInput
-          style={ styles.inputStyle }
-          onChangeText={ text => console.log(text) }
-          value={ 'text' }
-          type="password"
-          secureTextEntry
-        />
+        <Field name="confirmPassword" component={ FormPasswordInput } />
       </View>
 
-      <Button textStyle={ styles.buttonTextStyle } buttonStyle={ styles.buttonStyle }>
-        Sign up
-      </Button>
+      <TouchableHighlight
+        onPress={handleSubmit(handleSubmitForm)}
+      >
+        <Text>SIGN UP</Text>
+      </TouchableHighlight>
     </View>
   );
 }
+
+export default reduxForm({ form: 'signup' })(Signup);
