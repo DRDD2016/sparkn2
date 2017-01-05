@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 import { NavigationReducer } from '@exponent/ex-navigation';
 import auth from './auth';
 import user from './user';
@@ -21,5 +22,6 @@ export default combineReducers({
   create,
   photos,
   signup,
-  login
+  login,
+  form
 });

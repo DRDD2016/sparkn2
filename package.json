@@ -24,6 +24,7 @@
     "react-native-vector-icons": "^3.0.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
+    "redux-form": "^6.4.3",
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.7.0",
     "socket.io-client": "^1.7.1"
