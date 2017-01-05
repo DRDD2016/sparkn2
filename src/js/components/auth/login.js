@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TouchableHighlight, View } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 import { FormTextInput, FormPasswordInput } from './form-components';
+import { loginValidator as validate } from './form-validation';
 import Router from '../../router';
 import styles from '../../../styles';
 
@@ -33,4 +34,4 @@ function Login ({ navigator, handleSubmit, handleSubmitForm }) {
   );
 }
 
-export default reduxForm({ form: 'login' })(Login);
+export default reduxForm({ form: 'login', validate })(Login);
