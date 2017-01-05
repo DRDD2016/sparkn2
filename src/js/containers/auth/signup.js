@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import Signup from '../../components/auth/signup';
 import { signupUser } from '../../actions/signup';
 
+const mapStateToProps = ({ signup }) => ({
+  isSigningUp: signup.isSigningUp
+});
 
 const mapDispatchToProps = () => ({
   handleSubmitForm: ({ firstname, surname, email, password }, dispatch) => {
@@ -9,4 +12,4 @@ const mapDispatchToProps = () => ({
   }
 });
 
-export default connect(mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

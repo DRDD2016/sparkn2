@@ -3,10 +3,24 @@ import { Text, View, TouchableHighlight } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 import { FormTextInput, FormPasswordInput } from './form-components';
 import { signupValidator as validate } from './form-validation';
+import Spinner from '../common/Spinner';
 import styles from '../../../styles';
 
 
-function Signup ({ handleSubmit, handleSubmitForm }) {
+function Signup ({ handleSubmit, handleSubmitForm, isSigningUp }) {
+
+  const renderButton = () => {
+    if (isSigningUp) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <TouchableHighlight
+        onPress={handleSubmit(handleSubmitForm)}
+      >
+        <Text>SIGN UP</Text>
+      </TouchableHighlight>
+    );
+  };
 
   return (
     <View style={{ marginTop: 50 }}>
@@ -33,12 +47,7 @@ function Signup ({ handleSubmit, handleSubmitForm }) {
       <View style={ styles.row }>
         <Field name="confirmPassword" component={ FormPasswordInput } />
       </View>
-
-      <TouchableHighlight
-        onPress={handleSubmit(handleSubmitForm)}
-      >
-        <Text>SIGN UP</Text>
-      </TouchableHighlight>
+      { renderButton() }
     </View>
   );
 }
