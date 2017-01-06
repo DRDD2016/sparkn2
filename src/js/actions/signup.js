@@ -1,3 +1,6 @@
+
+import { setToken } from '../lib/token-helpers';
+
 export const SIGNUP_USER_REQUEST = 'SIGNUP_USER_REQUEST';
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
@@ -31,7 +34,14 @@ export function signupUser (firstname, surname, email, password) {
     })
     .then((response) => {
       response.json()
-        .then(data => console.log(data));
+        .then((data) => {
+          dispatch(signupUserSuccess({
+            firstname: data.firstname,
+            surname: data.surname,
+            email: data.email
+          }));
+          setToken(data.token);
+        });
     })
     .catch((error) => {
       dispatch(signupUserFailure(error));

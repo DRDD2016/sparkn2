@@ -9,7 +9,7 @@ export function loginValidator ({ email, password }) {
   }
   if (!password) {
     errors.password = 'Required field';
-  } else if (password.length < 6) {
+  } else if (password.length < 5) {
     errors.password = 'Password is too short';
   }
 
@@ -33,7 +33,7 @@ export function signupValidator ({ firstname, surname, email, password, confirmP
   }
   if (!password) {
     errors.password = 'Password is required';
-  } else if (password.length < 6) {
+  } else if (password.length < 5) {
     errors.password = 'Password is too short';
   }
   if (!confirmPassword) {

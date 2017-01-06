@@ -15,9 +15,6 @@ export const CLEAR_CREATE_EVENT = 'CLEAR_CREATE_EVENT';
 export const ADD_INPUT = 'ADD_INPUT';
 export const REMOVE_INPUT = 'REMOVE_INPUT';
 
-export const SET_CONTACTS = 'SET_CONTACTS';
-export const TOGGLE_SELECTED_INVITEE = 'TOGGLE_SELECTED_INVITEE';
-
 export const HYDRATE_CREATE_EVENT = 'HYDRATE_CREATE_EVENT';
 
 /********
@@ -123,24 +120,6 @@ export function removeInput (inputKey, eventType) {
     type: REMOVE_INPUT,
     inputKey,
     eventType
-  };
-}
-
-/********
-* INVITEE ACTIONS
-********/
-
-export function setContacts (data) {
-  return {
-    type: SET_CONTACTS,
-    data
-  };
-}
-
-export function toggleSelectedInvitee (index) {
-  return {
-    type: TOGGLE_SELECTED_INVITEE,
-    index
   };
 }
 

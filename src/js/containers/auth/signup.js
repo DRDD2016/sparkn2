@@ -8,7 +8,7 @@ const mapStateToProps = ({ signup }) => ({
 
 const mapDispatchToProps = () => ({
   handleSubmitForm: ({ firstname, surname, email, password }, dispatch) => {
-    dispatch(signupUser(firstname, surname, email, password));
+    dispatch(signupUser(firstname, surname, email.toLowerCase(), password));
   }
 });
 
