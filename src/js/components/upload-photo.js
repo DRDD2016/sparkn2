@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Button from './common/Button';
 import styles from '../../styles';
+import Router from '../router';
 
 export default function UploadPhoto ({ navigator }) {
 
   const nextPage = () => {
-    navigator.push('navbar');
+    navigator.push(Router.getRoute('navbar'));
   };
 
   return (
