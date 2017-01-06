@@ -1,9 +1,5 @@
 import update from 'react-addons-update';
-import { SET_DETAILS, SET_WHAT, SET_WHERE, SET_WHEN,
-         ADD_INPUT, REMOVE_INPUT,
-         SET_CONTACTS, TOGGLE_SELECTED_INVITEE,
-         SAVE_EVENT_REQUEST, SAVE_EVENT_SUCCESS, SAVE_EVENT_FAILURE, CLEAR_CREATE_EVENT,
-         HYDRATE_CREATE_EVENT } from '../actions/create';
+import * as actions from '../actions/create';
 
 export const initialState = {
   name: '',
@@ -25,55 +21,46 @@ export default function create (state = initialState, action) {
 
   switch (action.type) {
 
-    case SET_DETAILS:
+    case actions.SET_DETAILS:
       return setDetails(state, action);
 
-    case SET_WHAT:
+    case actions.SET_WHAT:
       return update(state, {
         _what: { $splice: [[action.inputKey, 1, action.data]] }
       });
 
-    case SET_WHERE:
+    case actions.SET_WHERE:
       return update(state, {
         _where: { $splice: [[action.inputKey, 1, action.data]] }
       });
 
-    case SET_WHEN:
+    case actions.SET_WHEN:
       return setWhen(state, action);
 
-    case ADD_INPUT:
+    case actions.ADD_INPUT:
       return addInput(state, action);
 
-    case REMOVE_INPUT:
+    case actions.REMOVE_INPUT:
       return update(state, {
         [action.eventType]: { $splice: [[action.inputKey, 1]] }
       });
 
-    case SET_CONTACTS:
-      return {
-        ...state,
-        _invitees: [
-          ...action.data
-        ]
-      };
-
-
-    case TOGGLE_SELECTED_INVITEE: // eslint-disable-line no-case-declarations
+    case actions.TOGGLE_SELECTED_INVITEE: // eslint-disable-line no-case-declarations
       const newObj = state._invitees[action.index];
       newObj.isSelected = !state._invitees[action.index].isSelected;
       return update(state, {
         _invitees: { $splice: [[action.index, 1, newObj]] }
       });
 
-    case SAVE_EVENT_REQUEST:
-    case SAVE_EVENT_SUCCESS:
-    case SAVE_EVENT_FAILURE:
+    case actions.SAVE_EVENT_REQUEST:
+    case actions.SAVE_EVENT_SUCCESS:
+    case actions.SAVE_EVENT_FAILURE:
       return handleSaveEvent(state, action);
 
-    case CLEAR_CREATE_EVENT:
+    case actions.CLEAR_CREATE_EVENT:
       return initialState;
 
-    case HYDRATE_CREATE_EVENT:
+    case actions.HYDRATE_CREATE_EVENT:
       return hydrateCreateEvent(state, action);
 
     default:
