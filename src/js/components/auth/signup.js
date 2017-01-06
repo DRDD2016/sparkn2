@@ -1,46 +1,55 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
-import Button from '../common/Button';
+import { Text, View, TouchableHighlight } from 'react-native';
+import { Field, reduxForm } from 'redux-form';
+import { FormTextInput, FormPasswordInput } from './form-components';
+import { signupValidator as validate } from './form-validation';
+import Spinner from '../common/Spinner';
 import styles from '../../../styles';
 
 
-export default function Signup () {
+function Signup ({ handleSubmit, handleSubmitForm, isSigningUp }) {
+
+  const renderButton = () => {
+    if (isSigningUp) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <TouchableHighlight
+        onPress={handleSubmit(handleSubmitForm)}
+      >
+        <Text>SIGN UP</Text>
+      </TouchableHighlight>
+    );
+  };
+
   return (
     <View style={{ marginTop: 50 }}>
+      <Text style={{ paddingLeft: 5 }}>First name</Text>
+      <View style={ styles.row }>
+        <Field name="firstname" component={ FormTextInput } />
+      </View>
+
+      <Text style={{ paddingLeft: 5 }}>Surname</Text>
+      <View style={ styles.row }>
+        <Field name="surname" component={ FormTextInput } />
+      </View>
+
       <Text style={{ paddingLeft: 5 }}>Email</Text>
       <View style={ styles.row }>
-        <TextInput
-          style={ styles.inputStyle }
-          onChangeText={ text => console.log(text) }
-          value={ 'text' }
-          type="text"
-        />
+        <Field name="email" component={ FormTextInput } />
       </View>
 
       <Text style={{ paddingLeft: 5 }}>Password</Text>
       <View style={ styles.row }>
-        <TextInput
-          style={ styles.inputStyle }
-          onChangeText={ text => console.log(text) }
-          value={ 'text' }
-          type="password"
-          secureTextEntry
-        />
+        <Field name="password" component={ FormPasswordInput } />
       </View>
       <Text style={{ paddingLeft: 5 }}>Confirm password</Text>
       <View style={ styles.row }>
-        <TextInput
-          style={ styles.inputStyle }
-          onChangeText={ text => console.log(text) }
-          value={ 'text' }
-          type="password"
-          secureTextEntry
-        />
+        <Field name="confirmPassword" component={ FormPasswordInput } />
       </View>
-
-      <Button textStyle={ styles.buttonTextStyle } buttonStyle={ styles.buttonStyle }>
-        Sign up
-      </Button>
+      { renderButton() }
     </View>
   );
 }
+
+export default reduxForm({ form: 'signup', validate })(Signup);

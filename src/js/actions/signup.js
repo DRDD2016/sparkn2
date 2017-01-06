@@ -1,14 +1,7 @@
-export const UPDATE_TEXT_INPUT = 'UPDATE_TEXT_INPUT';
 export const SIGNUP_USER_REQUEST = 'SIGNUP_USER_REQUEST';
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 export const LOGOUT = 'LOGOUT';
-
-export const updateTextInput = (data, inputType) => ({
-  type: UPDATE_TEXT_INPUT,
-  data,
-  inputType
-});
 
 export const signupUserRequest = () => ({
   type: SIGNUP_USER_REQUEST
@@ -24,10 +17,24 @@ export const signupUserFailure = error => ({
   error
 });
 
-
-export function signupUser (email, password) { //eslint-disable-line
+export function signupUser (firstname, surname, email, password) {
 
   return (dispatch) => {
     dispatch(signupUserRequest());
+    fetch('http://localhost:3000/signup', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ firstname, surname, email, password })
+    })
+    .then((response) => {
+      response.json()
+        .then(data => console.log(data));
+    })
+    .catch((error) => {
+      dispatch(signupUserFailure(error));
+    });
   };
 }
