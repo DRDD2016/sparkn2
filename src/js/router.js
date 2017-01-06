@@ -13,6 +13,7 @@ import WhenContainer from './containers/create/when';
 import ConfirmContainer from './containers/create/confirm';
 import EventContainer from './containers/event';
 import Navbar from './components/navbar';
+import UploadPhoto from './components/upload-photo';
 
 const Router = createRouter(() => ({
   auth: () => Index,
@@ -28,7 +29,8 @@ const Router = createRouter(() => ({
   where: () => WhereContainer,
   when: () => WhenContainer,
   confirm: () => ConfirmContainer,
-  event: () => EventContainer
+  event: () => EventContainer,
+  uploadPhoto: () => UploadPhoto
 }));
 
 export default Router;

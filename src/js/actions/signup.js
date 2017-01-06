@@ -1,3 +1,7 @@
+import { NavigationActions } from '@exponent/ex-navigation';
+import { store } from '../init-store';
+import Router from '../router';
+
 export const SIGNUP_USER_REQUEST = 'SIGNUP_USER_REQUEST';
 export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
@@ -38,6 +42,8 @@ export function signupUser (firstname, surname, email, password) {
             email: data.email
           }));
           // save token somewhere
+          const navigatorUID = store.getState().navigation.currentNavigatorUID;
+          dispatch(NavigationActions.push(navigatorUID, Router.getRoute('uploadPhoto')));
         });
     })
     .catch((error) => {
