@@ -1,3 +1,4 @@
+/*
 import { AsyncStorage } from 'react-native';
 
 export function setToken (token) {
@@ -16,3 +17,4 @@ export function getToken () {
     console.error(error);
   }
 }
+*/
